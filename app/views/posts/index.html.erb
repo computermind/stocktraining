@@ -1,1 +1,5 @@
 <h1>Picturegram</h1>
+<% @posts.each do |post| %>
+<%= link_to (image_tag post.image.url(:medium)), post_path(post) %><br>
+<%= post.caption %><br>
+<% end %>
