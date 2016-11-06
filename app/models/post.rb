@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
-    validates :image, presence: true 
+    validates :image, presence: true
+    validates :user_id, presence: true
     
     has_attached_file :image, styles: { :medium => "640x" }
     
@@ -7,5 +8,4 @@ class Post < ActiveRecord::Base
    
     belongs_to :user
     
-    before_action :authenticate_user!
 end
