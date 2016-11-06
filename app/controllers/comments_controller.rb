@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :find_post
+    before_action :find_post, only: [:edit, :update, :destroy]
     
     def create  
       @comment = @post.comments.build(comment_params)
@@ -13,6 +13,29 @@ class CommentsController < ApplicationController
         render root_path
       end
     end
+    
+    def edit
+    	if @comment.user != current_user
+    		sign_out current_user
+    		redirect_to root_path
+    	end
+    end
+
+    def update
+    	if @comment.user == current_user
+    		if @comment.update(comment_params)
+    			flash[:notice] = "Comment updated successfully."
+    			redirect_to @comment.post
+    		else
+    			flash[:alert] = "Unable to update comment."
+    			render :edit
+    		end
+    	else
+    		sign_out current_user
+    		redirect_to root_path
+    	end
+  
+    end 
     
     def destroy  
       @comment = @post.comments.find(params[:id])
@@ -30,6 +53,6 @@ class CommentsController < ApplicationController
     
     def find_post  
       @post = Post.find(params[:post_id])
-    end      
-    
+    end   
+
 end
