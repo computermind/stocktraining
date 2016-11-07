@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   get ':user_name/edit', to: 'profiles#edit', as: :edit_profile
   
+  patch ':user_name/edit', to: 'profiles#update', as: :update_profile
+  
 end
