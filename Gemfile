@@ -41,7 +41,7 @@ gem 'devise'
 
 gem 'twitter-bootstrap-rails'
 
-#for pagination
+#for pagination not yet functional in my app; still needs some working on.
 gem 'kaminari'
 
 group :development, :test do
