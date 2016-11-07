@@ -1,7 +1,11 @@
+
+
 <div class = "container">
-<%= simple_form_for @post do |f| %>
-<%= f.input :image %>
-<%= f.input :caption %>
+<%= simple_form_for @post, html: { multipart: true } do |f| %>
+<%= f.error_notification %>
+<h4>Upload an image (this is required):</h4>
+<%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
+<%= f.input :caption, label: false, placeholder: 'Write your caption' %>
 <%= f.button :submit, class: "btn-success" %>
 <% end %>
 </div>
