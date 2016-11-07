@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
     
-    before_action :owned_post, only: [:edit, :update, :destroy]
+#    before_action :owned_post, only: [:edit, :update, :destroy]
     
     before_action :find_post, only: [:show, :edit, :update, :destroy]
     
@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     end
     
     def show
+        @comments = Comment.where(post_url: @post).order("created_at DESC")
     end
     
     def new
@@ -55,10 +56,10 @@ class PostsController < ApplicationController
             @post = Post.find(params[:id])
         end
       
-        def owned_post  
-          unless current_user == @post.user
-            flash[:alert] = "That post doesn't belong to you!"
-            redirect_to root_path
-          end
-        end         
+#       def owned_post  
+#         unless @post.user == current_user
+#           flash[:alert] = "That post doesn't belong to you!"
+#           redirect_to root_path
+#         end
+#       end         
 end

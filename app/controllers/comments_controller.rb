@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :find_post, only: [:edit, :update, :destroy]
+    before_action :find_post
     
     def create  
       @comment = @post.comments.build(comment_params)
@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     
       if @comment.save
         flash[:success] = "Comment created!"
-        redirect_to :back
+        redirect_to post_path(@post)
       else
         flash[:alert] = "Error! Check the comment form."
         render root_path
@@ -15,28 +15,28 @@ class CommentsController < ApplicationController
     end
     
     def edit
-    	if @comment.user != current_user
-    		sign_out current_user
-    		redirect_to root_path
-    	end
+      if @comment.user != current_user
+      sign_out current_user
+      redirect_to root_path
+      end
     end
-
-    def update
-    	if @comment.user == current_user
-    		if @comment.update(comment_params)
-    			flash[:notice] = "Comment updated successfully."
-    			redirect_to @comment.post
-    		else
-    			flash[:alert] = "Unable to update comment."
-    			render :edit
-    		end
-    	else
-    		sign_out current_user
-    		redirect_to root_path
-    	end
-  
-    end 
     
+    def update
+      if @comment.user == current_user
+      	if @comment.update(comment_params)
+      		flash[:notice] = "comment updated successfully."
+      		redirect_to @comment.post
+      	else
+      		flash[:alert] = "Unable to update comment."
+      		render :edit
+      	end
+      else
+      	sign_out current_user
+      	redirect_to root_path
+      end
+    end
+    
+
     def destroy  
       @comment = @post.comments.find(params[:id])
     
@@ -46,13 +46,13 @@ class CommentsController < ApplicationController
     end    
     
     private
-    
-    def comment_params  
-      params.require(:comment).permit(:content)
-    end
-    
-    def find_post  
-      @post = Post.find(params[:post_id])
-    end   
+      
+      def comment_params  
+        params.require(:comment).permit(:content)
+      end
+      
+      def find_post  
+        @post = Post.find(params[:post_id])
+      end   
 
 end

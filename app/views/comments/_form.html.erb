@@ -1,11 +1,5 @@
-<div class = "container">
-<% if post.comments %>
-    <%= post.comments.each do |comment| %>
-    <%= comment.user.user_name %>
-    <%= comment.content %>
-<% if comment.user == current_user %>
-    <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-    <%= form_for [post, post.comments.new] do |f| %>
-    <%= f.text_field :content, placeholder: 'Add a comment...' %>
+<%= form_for [@post, @post.comments.new] do |f| %>
+<%= f.text_field :content, placeholder: 'Write a comment...' %>
+<%= f.submit %>
 <% end %>
-</div>
+

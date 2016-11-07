@@ -1,13 +1,18 @@
 <div class = "container">
-<%= image_tag @post.image.url(:medium) %><br>
+<%=link_to @post.user.user_name %><span>:</span>
 <%= @post.caption %><br>
+<%= image_tag @post.image.url(:medium) %><br>
 <% if @post.user.id == current_user.id %>
-    <%= link_to "Cancel", posts_path %>
+    <%=link_to "Cancel", posts_path %>
     |
-    <%= link_to "Edit Post", edit_post_path(@post) %>
+    <%=link_to "Edit Post", edit_post_path(@post) %>
     |
     <%= link_to "Delete Post", post_path(@post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %>
 <% else %>
-    <%= link_to "Cancel", posts_path %>
-<% end %>
+    <%=link_to "Cancel", posts_path %>
+<% end %><br>
+<%= render 'comments/comment' %>
+
+<%= render 'comments/form' %>
+
 </div>

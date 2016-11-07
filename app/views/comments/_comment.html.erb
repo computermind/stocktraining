@@ -1,0 +1,10 @@
+<% if @post.comments %> 
+    <% @post.comments.each do |comment| %>
+    <%= link_to comment.user.user_name %>
+    <%= comment.content %><br>
+      <%= time_ago_in_words @post.created_at %><br>
+    <% if comment.user == current_user %> 
+    <% link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" }  %>
+<% end %>
+<% end %>
+<% end %>
