@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     before_action :find_post, only: [:show, :edit, :update, :destroy, :like]
     
     def index
-        @posts = Post.all.order('created_at DESC').page params[:page]
+        @posts = Post.of_followed_users(current_user.following).order('created_at DESC').page params[:page]
     end
     
     def show
