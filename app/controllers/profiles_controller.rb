@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :owned_profile, only: [:edit, :update]
+#  before_action :owned_profile, only: [:edit, :update]
   before_action :find_user, except: [:profile_params]
   
   def show
@@ -28,12 +28,12 @@ class ProfilesController < ApplicationController
       params.require(:user).permit(:avatar, :bio)
     end
     
-    def owned_profile  
-      unless current_user == @user
-        flash[:alert] = "You are attempting something that could get you in trouble!"
-        redirect_to root_path
-      end
-    end
+#   def owned_profile  
+#     unless current_user == @user
+#      flash[:alert] = "You are attempting something that could get you in trouble!"
+#       redirect_to root_path
+#    end
+#  end
     
     def find_user
       @user = User.find_by(user_name: params[:user_name])

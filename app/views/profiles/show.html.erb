@@ -1,27 +1,22 @@
 
-<div class = "container">
-        <%=profile_avatar_select(@user) %>
-        <%=@user.user_name %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+         <%= profile_avatar_select(@user) %>
+        </div>
+    </div>    
+</div>  
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+             <h3><%=@user.user_name %></h3>
         <% if @user == current_user %>
+            <%=@user.bio %>
             <%=link_to 'Edit Profile', edit_profile_path(@user.user_name)  %>
-        <%=@user.bio %>
-        <%=pluralize @user.posts.count, 'post' %>
-            <% @posts.each do |post| %>
-                    <%= link_to post.user.user_name, profile_path(post.user.user_name) %><br>
-                    <%= post.caption %><br>
-                    <%= distance_of_time_in_words(post.created_at, Time.now, include_seconds: true) %><br>
-                    <%= link_to (image_tag post.image.url(:medium), class:'img-responsive'), post_path(post) %>
-                    
-                    <% post.comments.each do |comment| %>
-                            <%= link_to comment.user.user_name %>
-                        <%= comment.content %><br>
-                    <% end %>
-                    
-                    <%= form_for [post, post.comments.new] do |f| %>
-                    <%= f.text_field :content, placeholder: 'Write a comment...' %>
-                    <%= f.submit %><hr>
-                    <% end %>
-                    
-            <% end %>
          <% end %>
+            </div>
+        </div>    
+    </div>  
 </div>

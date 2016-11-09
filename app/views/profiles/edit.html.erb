@@ -1,8 +1,10 @@
-
+<div class="container">
 <%= form_for @user, url: {action: "update"}, html: { multipart: true } do |f| %>
 <h4>Change Your Profile Image:</h4>
-<%= profile_avatar_select(@user) %>
+<%= f.file_field :avatar, onChange: 'loadFile(event)' %>
+
 <h4>About You:</h4>
-<%= f.text_area :bio, label: false, rows: 4 %>
+<%= f.text_area :bio, label: false, rows: 4 %><br>
 <%= f.submit "Update Profile", class: 'btn btn-success' %>
 <% end %>
+</div>  
