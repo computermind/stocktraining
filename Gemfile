@@ -44,6 +44,9 @@ gem 'twitter-bootstrap-rails'
 #for pagination not yet functional in my app; still needs some working on.
 gem 'kaminari'
 
+#for adding likes to app
+gem 'acts_as_votable', '~> 0.10.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
