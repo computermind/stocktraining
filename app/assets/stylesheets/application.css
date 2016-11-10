@@ -11,118 +11,19 @@
  * file per style scope.
  *
  *= require_tree .
+  *= require clean-blog.min
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+
   
 body {
-  margin-top: 60px;
+  margin-top: 100px;
+  background-color:#fff;
+  color: black;
 }
 
-#navbar-brand {
-    color: #125688;
-  }
 
-#navbar-default {
-  background-color: #fff;
-  height: 54px;}
-  
-#navbar-nav li a {
-    color: #125688;
-  }
 
-#navbar-container {
-  width: 640px;
-  margin: 0 auto;
-}
 
-#posts-wrapper {
-  padding-top: 40px;
-  margin: 0 auto;
-  max-width: 642px;
-  width: 100%;
-}
-
-#post {
-  background-color: #fff;
-  border-color: #edeeee;
-  border-style: solid;
-  border-radius: 3px;
-  border-width: 1px;
-  margin-bottom: 60px;
-}
-
-#post-head {
-  height: 64px;
-  padding: 14px 20px;
-  color: #125688;
-  font-size: 15px;
-  line-height: 18px;}
-  
-#thumbnail {}
-  
-#name {
-    display: block;
-  }
-
-#image {
-  border-bottom: 1px solid #eeefef;
-  border-top: 1px solid #eeefef;
-}
-
-#caption {
-  padding: 24px 24px;
-  font-size: 15px;
-  line-height: 18px;
-
-}
-
-#form-wrapper {
-  width: 60%;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 40px;
-  border: 1px solid #eeefef;
-  border-radius: 3px;
-}
-
-#edit-links {
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-
-html {  
-  height: 100%;
-}
-
-.registration-bg {
-  padding-top: 4em;
-  height: 100%;
-  background-image: image-url('regbackg.jpg');
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.log-in{
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
-  border: none;
-}
-
-.panel {
-  border-radius: 8px;
-}
-
-.panel-heading h1 {
-    text-align: center;
-  }
-  
-  .navbar {
-  margin-bottom: 0px;
-}
-
-.alert {
-  margin-bottom: 0px;
-}

@@ -11,7 +11,7 @@
 			class: "glyphicon #{liked_post post}"%><br>                
 		</div>
 	</div>
-	<%= render 'posts/likes', post: post %><br>
+	<%= render 'posts/likes', post: post %>
 	<%= paginate @posts %><br>
 	
 	<% post.comments.each do |comment| %>
