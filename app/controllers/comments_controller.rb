@@ -7,11 +7,6 @@ class CommentsController < ApplicationController
     
       if @comment.save
         flash[:success] = "Comment created!"
-        create_notification @post, @comment
-        respond_to do |format|
-          format.html { redirect_to root_path }
-          format.js
-        end
         redirect_to post_path(@post)
       else
         flash[:alert] = "Error! Check the comment form."
@@ -59,14 +54,5 @@ class CommentsController < ApplicationController
       def find_post  
         @post = Post.find(params[:post_id])
       end   
-      
-      def create_notification(post)  
-        return if post.user.id == current_user.id 
-        Notification.create(user_id: post.user.id,
-                          notified_by_id: current_user.id,
-                          post_id: post.id,
-                          comment_id: comment.id,
-                          notice_type: 'comment')
-      end 
 
 end

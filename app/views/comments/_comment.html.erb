@@ -3,9 +3,9 @@
     <%= link_to comment.user.user_name, profile_path(comment.user.user_name) %>
     <%= comment.content %><br>
     <%= distance_of_time_in_words(comment.created_at, Time.now, include_seconds: true) %><br>
-<% if comment.user == current_user %>
-        <% link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do  %>
+        <% if comment.user == current_user %>
+                <% link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do  %>
+                <% end %>
         <% end %>
     <% end %>
-<% end %>
 <% end %>
