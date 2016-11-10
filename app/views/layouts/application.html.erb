@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="page-top" class="<%= 'home-page-bg' if current_page?(root_path) %>">
-
+<% unless current_page?(root_path) %>
 <%= render 'layouts/navbar' %>
+<% end %>
 
 <div class="container"> 
   
