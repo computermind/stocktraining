@@ -15,6 +15,7 @@
         <li><%= link_to "News Feed", browse_posts_path%></li>
         <li><%= link_to 'Home', posts_path %></li>
         <li><%= link_to 'Friends', "#" %></li>
+        <li><% current_user.notifications.count %></li>
         <li><%= link_to 'New Post', new_post_path %></li>
         <% end %>
        <% if user_signed_in? %>

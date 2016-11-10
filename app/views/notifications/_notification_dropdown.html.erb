@@ -1,0 +1,3 @@
+<% if user_signed_in? %>
+<%=current_user.notifications.count %>
+<%= render current_user.notifications.order('created_at DESC') %>
