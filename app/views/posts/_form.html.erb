@@ -6,6 +6,7 @@
 <h4>Upload an image (this is required):</h4>
 <%= f.input :image, label: false, input_html: { onChange: 'loadFile(event)' } %>
 <%= f.input :caption, label: false, placeholder: 'Write your caption' %>
+<%= f.input :youtube, label: false, placeholder: 'Add youtube link' %>
 <%= f.button :submit, class: "btn-info" %>
 <% end %>
 </div>
