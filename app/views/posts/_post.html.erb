@@ -3,11 +3,11 @@
 	<%= link_to post.user.user_name, profile_path(post.user.user_name) %><br>
 	<%= post.caption %><br>
 	<% if post.youtube != nil %>
-	<iframe width="560" height="315" src="<%= post.youtube %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		<iframe width="560" height="315" src="<%= post.youtube %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></br>
 	<% end %>
 	<%= distance_of_time_in_words(post.created_at, Time.now, include_seconds: true) %><br>
-	<% if post.image != nil %>
-	<%= link_to (image_tag post.image.url(:medium), class:'img-responsive'), post_path(post) %>
+	<% if post.image.blank? == false %>
+		<%= link_to (image_tag post.image.url(:medium), class:'img-responsive'), post_path(post) %>
 	<% end %>
 	<div class="row">
 		<div class="col-sm-1">
@@ -16,7 +16,16 @@
 			class: "glyphicon #{liked_post post}"%><br>                
 		</div>
 	</div>
-	<%= render 'posts/likes', post: post %>
+	<%= render 'posts/likes', post: post %></br>
+		
+	    <% if post.user.id == current_user.id %>
+        <%=link_to "Cancel", posts_path %>
+        |
+        <%=link_to "Edit Post", edit_post_path(post) %>
+        |
+        <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %>
+    <% end %>
+	
 	<%= paginate @posts %><br>
 	
 	<% post.comments.each do |comment| %>
