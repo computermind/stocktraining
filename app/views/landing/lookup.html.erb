@@ -1,8 +1,15 @@
- 
- <%=render 'landing/search' %>
- 
-<%= @price_info %>
+<%= @symbol %></br>
+
+<% @lookup_coin.values.each do |coin| %>
+    <% if @symbol == coin["Symbol"] %>
+        <%= coin["CoinName"] %> <%= coin["Symbol"] %><br>
+    <% end %>
+<% end %>
+
+
 <div class="container">
+
+<%= link_to 'Back', root_path %> <br>
 
 <table class="table table-hover">
   <thead>
@@ -14,14 +21,14 @@
         <th>Total Vol 24hrs</th>
         <th>Circulating Supply</th>
         <th>Change</th>
-        <th>% Change</th>
-        <th colspan="9"></th>
+        <th colspan="8">% Change</th>
     </tr>
   </thead>
 
   <tbody>
-   <% @coinlists.values.each do |coin| %>
+   <% @lookup_coin.values.each do |coin| %>
       <tr>
+         <% if @symbol == coin["Symbol"] %>
         <td><%= coin["Symbol"] %></td>
         <td><%= coin["CoinName"] %></td>
         <td><%= coin["Url"] %></td>
@@ -29,10 +36,10 @@
         <td><%= coin["ProofType"] %></td>
         <td><%= coin["ImageUrl"] %></td>
         <td><%= coin["TotalCoinSupply"] %></td>
-       </tr>
+         <td><%= coin["TotalCoinSupply"] %></td>
+      </tr>
+    <% end %>
   </tbody>
    <% end %>
 </table>
 </div>
- 
-

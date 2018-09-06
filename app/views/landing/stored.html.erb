@@ -1,0 +1,47 @@
+      require 'net/http'
+      require 'json'
+      require 'open-uri'
+      
+      @url = 'https://api.coinmarketcap.com/v1/ticker/?sort=id'
+      @uri = URI(@url)
+      @response = Net::HTTP.get(@uri)
+      @coins = JSON.parse(@response)
+      @my_coins = []
+        
+        @coins.each do |coin|
+            coin["name"]
+            coin["symbol"]
+            coin["rank"]
+            coin["price_usd"]
+            coin["total_supply"]
+            coin["max_supply"]
+            coin["circulating_supply"]
+            coin["market_cap"]
+            @my_coins.push(coin)
+        end
+        
+<%=render 'landing/search' %>
+
+<% @my_coins.each_with_index do |coin, index| %>
+	<p>
+		<i class=""></i> <strong>name:</strong> <%= coin["name"] %></br>
+		<i class=""></i> <strong>symbol:</strong> <%= coin["symbol"] %></br>
+		<i class=""></i> <strong>price:</strong> <%= coin["price_usd"] %></br>
+		<i class=""></i> <strong>rank:</strong> <%= coin["rank"] %></br>
+		<i class=""></i> <strong>Total Supply:</strong> <%=number_to_currency coin["total_supply"] %></br>
+		<i class=""></i> <strong>Max Supply:</strong> <%=coin["max_supply"] %></br>
+		<i class=""></i> <strong>Cir Supply:</strong> <%=coin["circulating_supply"] %></br>
+		<i class=""></i> <strong>Market Cap:</strong> <%=coin["market_cap"] %>
+	</p>
+<% end %>  
+
+<%= @symbol %>
+
+<% if @symbol %> 
+    <% for x in @lookup_coin %>
+        <% if @symbol == x["Symbol"] %>
+                <%= x["Name"] %>: $<%= x["price_usd"] %><br/>
+                Rank: <%= x["rank"] %><br/><br/>
+            <% end %>
+    <% end %>
+<% end %>

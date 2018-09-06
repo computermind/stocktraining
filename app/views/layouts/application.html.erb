@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CollegeCollage</title>
+  <title>Guwor Capital</title>
    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body id="page-top" class="<%= 'home-page-bg' if current_page?(root_path) %>">
-<% unless current_page?(root_path) %>
-<%= render 'layouts/navbar' %>
+
+  <%= render 'layouts/navbar' %>
+  
+<% if current_page?(posts_path)%>
+  <div class="container" style="margin-top:50px;">
+    <div class="jumbotron">
+    	<h2>Welcome to Your Classroom <%=current_user.user_name%>!</h2>
+
+  	
+    </div>
+  </div>
 <% end %>
 
 <div class="container"> 

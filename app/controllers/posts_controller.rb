@@ -59,7 +59,7 @@ class PostsController < ApplicationController
     def browse  
         @posts = Post.all.order('created_at DESC').page params[:page]
     end 
-
+    
     private
         def post_params
             params.require(:post).permit(:image, :caption, :user_id, :youtube)

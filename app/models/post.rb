@@ -1,3 +1,4 @@
+require 'cryptocompare'
 class Post < ActiveRecord::Base
     
     acts_as_votable
@@ -15,5 +16,7 @@ class Post < ActiveRecord::Base
     
     has_many :notifications, dependent: :destroy 
     
-    scope :of_followed_users, -> (following_users) { where user_id: following_users } 
+    scope :of_followed_users, -> (following_users) { where user_id: following_users }
+    
+    @coinlist = Cryptocompare::CoinList.all
 end
